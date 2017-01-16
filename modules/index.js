@@ -11,6 +11,7 @@
 /**
  * Module
  * @module mockbot-node
+ * @property {Array} childNodes - an array of child nodes
  */
 
 /**
@@ -22,33 +23,77 @@
  /** 
  * Factory method 
  * It takes one spec parameter that must be an object with named parameters
- * @param {Object} options Named parameters object
+ * @param {Object} spec Named parameters object
+ * @param {number} spec.nodeType required node type
  * @returns {module:mockbot-node}
  * @example <caption>Usage example</caption>
  * var factory = require("mockbot-node");
- * var obj = factory.create({});
+ * var obj = factory.create({ nodeType: 1 });
  */
 module.exports.create = (spec) => {
-    if(!spec) {
-        return null;
-    }
-    // private 
-    let _package = "mockbot-node";
-    return {
-        // public
-        /** Returns the package name
+
+    spec = spec || {};
+    var m_nodeType = spec.nodeType || 0,
+        m_child = [];
+        
+    var obj = {
+
+        /** mock node.hasChildNodes
           * @function
           * @instance
           * @memberof module:mockbot-node
+          * @returns {boolean}
+          * @example <caption>usage</caption>
+          * if(node.hasChildNodes()) { ... }
         */
-        package: () => _package,
-        /** Health check
+        hasChildNodes: function() {
+            return m_child.length > 0; 
+        },
+
+        /** mock node.appenChild 
           * @function
           * @instance
+          * @param {boolean} deep If true, clone children as well
           * @memberof module:mockbot-node
-          * @example <caption>Health check</caption>
-          * obj.health.should.eql("OK");
+          * @returns {module:mockbot-node}
+          * @example <caption>usage</caption>
+          * node.appendChild(child);
         */
-        health: () => "OK"
+        appendChild: function(n) {
+            m_child.push(n);
+            return n; 
+        },
+
+        /** mock node.cloneNode
+          * @function
+          * @instance
+          * @param {boolean} deep If true, clone children as well
+          * @memberof module:mockbot-node
+          * @returns {module:mockbot-node}
+          * @example <caption>usage</caption>
+          * var n = el.cloneNode();
+        */
+        cloneNode: function(deep) {
+            return Object.create(this,{});
+        },
     };
+
+    Object.defineProperties( obj, {
+      // properties are documented in the module section at the top
+
+      "nodeType": {
+        writable: false,
+        enumerable: true,
+        value: m_nodeType
+      },
+
+      "childNodes": {
+        writable: false,
+        enumerable: true,
+        value: m_child
+      },
+
+    });
+
+    return obj;
 };

@@ -1,7 +1,7 @@
 {
   "name": "mockbot-node",
   "version": "0.1.0",
-  "description": "",
+  "description": "mock html dom node",
   "main": "dist/mockbot-node.js",
   "scripts": {
     "//": "To use: npm start (useful if not a module)",
