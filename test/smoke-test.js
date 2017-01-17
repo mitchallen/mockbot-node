@@ -52,4 +52,12 @@ describe('module factory smoke test', () => {
         should.exist(obj);
         done();
     });
+
+    it('cloneNode method should clone node', done => {
+        var el = _factory.create({ nodeType: 1 });
+        var clone = el.cloneNode();
+        should.exist(clone);
+        el.should.eql(clone);
+        done();
+    });
 });

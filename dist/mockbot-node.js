@@ -76,7 +76,8 @@ module.exports.create = function (spec) {
           * var n = el.cloneNode();
         */
         cloneNode: function cloneNode(deep) {
-            return Object.create(this, {});
+            // TODO - this may not be ideal 
+            return Object.assign({}, this);
         }
     };
 
