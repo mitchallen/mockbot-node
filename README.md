@@ -11,7 +11,7 @@ mock html dom node
     <img src="https://codecov.io/gh/mitchallen/mockbot-node/branch/master/graph/badge.svg" alt="Coverage Status">
   </a>
   <a href="https://npmjs.org/package/mockbot-node">
-    <img src="http://img.shields.io/npm/dt/mockbot-node/.svg?style=flat-square" alt="Downloads">
+    <img src="http://img.shields.io/npm/dt/mockbot-node.svg?style=flat-square" alt="Downloads">
   </a>
   <a href="https://npmjs.org/package/mockbot-node">
     <img src="http://img.shields.io/npm/v/mockbot-node.svg?style=flat-square" alt="Version">
@@ -145,6 +145,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.2
+
+* fixed download badge url in readme
 
 #### Version 0.1.1
 
